@@ -1,3 +1,7 @@
+# Description
+
+This project is meant to test new features within the [watcher](https://github.com/e-dant/watcher) project. `watcher.hpp` file is copied from [9c5b4a6](https://github.com/e-dant/watcher/tree/9c5b4a6c581ef22785fed2f14ad9efde6ab6cc66) commit [watcher.hpp](https://github.com/e-dant/watcher/blob/9c5b4a6c581ef22785fed2f14ad9efde6ab6cc66/include/wtr/watcher.hpp) file, which is licensed under [MIT License](https://github.com/e-dant/watcher/blob/release/license) and copyrighted by [e-dant](https://github.com/e-dant)
+
 ## Building
 
 Create a new build directory and switch into it:
