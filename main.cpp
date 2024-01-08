@@ -61,64 +61,6 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-using PathType = enum wtr::event::path_type;
-using EffectType = enum wtr::event::effect_type;
-
-string toString(PathType type) {
-  switch (type) {
-  case PathType::dir: {
-    return "Directory";
-  }
-  case PathType::file: {
-    return "File";
-  }
-  case PathType::hard_link: {
-    return "Hard link";
-  }
-  case PathType::sym_link: {
-    return "Symbolic Link";
-  }
-  case PathType::watcher: {
-    return "Watcher";
-  }
-  case PathType::other: {
-    [[fallthrough]];
-  }
-  default: {
-    return "Other";
-  }
-  }
-}
-
-string toString(EffectType type) {
-  switch (type) {
-  case EffectType::rename: {
-    return "Rename";
-  }
-  case EffectType::modify: {
-    return "Modify";
-  }
-  case EffectType::create: {
-    return "Create";
-  }
-  case EffectType::destroy: {
-    return "Destroy";
-  }
-  case EffectType::owner: {
-    return "Owner";
-  }
-  case EffectType::other: {
-    [[fallthrough]];
-  }
-  default: {
-    return "Other";
-  }
-  }
-}
-
-using Clock = chrono::system_clock;
-using TimePoint = chrono::time_point<Clock>;
-
 void print(const string &msg) {
   lock_guard print_lock(std_mx);
   cout << msg << endl;
@@ -128,8 +70,9 @@ void printEvent(const wtr::event *event, uint level) {
   auto offset = string(level, ' ');
   if (event) {
     stringstream ss;
-    ss << offset << "Event Type: " << toString(event->effect_type) << endl
-       << offset << "Path Type: " << toString(event->path_type) << endl
+    ss << offset << "Event Type: " << wtr::to<string>(event->effect_type)
+       << endl
+       << offset << "Path Type: " << wtr::to<string>(event->path_type) << endl
        << offset << "Path Name: " << event->path_name.string() << endl
        << offset << "Effect Time: " << to_string(event->effect_time) << endl
        << offset << "Associated event: ";
